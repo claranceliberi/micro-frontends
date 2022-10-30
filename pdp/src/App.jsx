@@ -1,21 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 
 import Footer from "home/Footer";
 import Header from "home/Header";
 
 import "./index.scss";
 import SafeComponent from "./SafeComponent";
+import PDPContent from "./PDPContent";
 
 const App = () => (
-  <div className="mt-10 text-3xl mx-auto max-w-6xl">
+ <Router>
+   <div className="mt-10 text-3xl mx-auto max-w-6xl">
     <SafeComponent>
-      <Header />
+      <Header app={{name:'pdp'}} />
     </SafeComponent>
-    <div>Language: JavaScript</div>
-    <div>CSS: Tailwind</div>
+    <Switch>
+      <Route path="/product/:id" component={PDPContent} />
+    </Switch>
     <Footer />
     
   </div>
+ </Router>
 );
 ReactDOM.render(<App />, document.getElementById("app"));
